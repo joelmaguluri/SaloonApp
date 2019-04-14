@@ -7,11 +7,11 @@ const port = process.env.PORT || 1234;
 const path=require('path')
 app.use(bodyParser.json());
 app.use(express.static('public'));
-app.get('/signup',function(req,res,next){
-res.sendFile(path.join(__dirname,'/public/signup.html'));
+app.get('/',function(req,res,next){
+res.sendFile(path.join(__dirname,'/public/index.html'));
 
 });
-app.post('/signup',function(req,res,next){
+app.post('/',function(req,res,next){
     var user = new User();
     user.name=req.body.name;
     user.email=req.body.email;
