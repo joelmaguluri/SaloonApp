@@ -37,11 +37,95 @@
 							$(this).find('#inputName').focus();
 					});
 			});
+		
+
+		
+
 			</script>
-		</head>
+
+
+<script>
+function changetosignup(){
+$('#LoginModal').modal('hide')
+$('#LoginModal').on('hidden.bs.modal', function () {
+  // Load up a new modal...
+  $('#SignupModal').modal('show')
+})
+
+}
+
+
+function changetologin(){
+$('#SignupModal').modal('hide')
+$('#SignupModal').on('hidden.bs.modal', function () {
+  // Load up a new modal...
+  $('#LoginModal').modal('show')
+})
+
+}
+</script>
+</head>
 		<body>	
 		
-				<div class="modal fade" id="myModal">
+				<div class="modal fade" id="LoginModal">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+							
+								<!-- Modal Header -->
+								<div class="modal-header">
+										<h4 class="modal-title">LOGIN</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    
+                </div>
+								
+								<!-- Modal body -->
+								<div class="modal-body">
+									
+							
+						
+										<form id='loginform' action="/login" method="post">
+												 <center>
+														<div class="mt-10">
+																<input type="text" name="name" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input" autofocus>
+														</div>
+												 
+														
+													
+														<div class="mt-10">
+																		<input type="text" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input" >
+																	<center> 
+																	
+                       
+																</div>
+													
+															<a href="javascript:$('#loginform').submit();" class="genric-btn primary circle" type="submit">Login</a></center>
+				
+																	 
+											</form>
+				
+										<center>
+												       
+												<p class="loginhere">
+												Create an account ?<a href="" data-toggle="modal" data-target="#SignupModal" id="login" onclick="return changetosignup()">Signup</a> 
+															
+												</p>
+										</center>   
+						
+		
+								</div>
+								
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="index.html">Close</a></button>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+
+
+
+				<div class="modal fade" id="SignupModal">
 						<div class="modal-dialog modal-dialog-centered" role="document">
 							<div class="modal-content">
 							
@@ -57,7 +141,7 @@
 									
 							
 						
-										<form action="#">
+										<form id='signupform' method="POST" action="/signup">
 												 <center>
 														<div class="mt-10">
 																<input type="text" name="name" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input" autofocus>
@@ -65,14 +149,14 @@
 												 
 														
 														<div class="mt-10">
-																<input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required class="single-input" >
+																<input type="email" name="email" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required class="single-input" >
 														</div>
 														<div class="mt-10">
 																		<input type="text" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input" >
-																	<center> <a href="#" class="genric-btn primary circle">Signup</a> </center>
+																	<center>	<a href="javascript:$('#signupform').submit();" class="genric-btn primary circle" type="submit">Signup</a></center> </center>
 																</div>
 													
-															
+											</form>		
 				
 				
 					
@@ -83,23 +167,24 @@
 																		<label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
 																</div>                   
 												<p class="loginhere">
-														Have already an account ? <a href="#" class="genric-btn link-border">Login</a>
+														Have already an account ? <a href="" data-toggle="modal" data-target="#SignupModal" id="login" onclick="return changetologin()">Login</a> 
 															
 												</p>
 										</center>   
 								</center>
 														 
-						</form>
-								</div>
+			
+
 								
-								<!-- Modal footer -->
+						<!-- Modal footer -->
 								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="index.html">Close</a></button>
 								</div>
 								
 							</div>
 						</div>
 					</div>
+				</div>
 			  <header id="header" id="home">
 		  		<div class="header-top">
 		  			<div class="container">
@@ -134,19 +219,21 @@
 							<ul class="nav-menu">
 							  <li class="menu-active"><a href="index.html">Home</a></li>
 							  <li><a href="about.html">About</a></li>
-							  <li><a href="menu.html">Services</a></li>
+							  <li><a href="menu.html">Menu</a></li>
 							  <li class="menu-has-children"><a href="">LOGIN / SIGNUP</a>
 							    <ul>
 							      <li class="menu-has-children"><a href="">CUSTOMER</a>
 							        <ul>
-							          <li><a href="#">LOGIN</a></li>
-												<li><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#myModal">SIGNUP</button></li>
+							          <li><a href="#"  data-toggle="modal" data-target="#LoginModal">LOGIN</a></li>
+												<li><a href="#" data-toggle="modal" data-target="#SignupModal">SIGNUP</a></li>
 							        </ul>
 										</li>		
 										<li class="menu-has-children"><a href="">TECHNICIAN</a>
 											<ul>
-							          <li><a href="#">LOGIN</a></li>
-												<li><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#myModal">SIGNUP</button></li>
+							          <li><a href="#"  data-toggle="modal" data-target="#LoginModal">LOGIN</a></li>
+												<li>
+														<a href="#" data-toggle="modal" data-target="#SignupModal">SIGNUP</a>
+									      </li>
 							        </ul> 
 							      </li>					              
 							    </ul>
