@@ -12,7 +12,11 @@ app.get('/',function(req,res,next){
 res.sendFile(path.join(__dirname,'/public/index.html'));
 
 });
-
+app.get('/menu',function(req,res,next){
+    res.sendFile(path.join(__dirname,'/views/build/200.html'));
+    
+    });
+    
 app.post('/login',function(req,res,next){
 
     res.sendFile(path.join(__dirname,'/public/afterlogin.html'));
@@ -29,6 +33,21 @@ app.post('/signup',function(req,res,next){
     res.render('thankyou.pug');
 
 })
+function remoteAddr(req) {
+    if (req.ip) {
+        return req.ip;
+    }
+    var socket = req.socket;
+    if (socket.socket) {
+        return socket.socket.remoteAddress;
+    }
+    return socket.remoteAddress;
+}; 
+
+app.get('/example', function(req, res){
+    var ip = remoteAddr(req);
+    res.render('ip', { ip: ip, ipFirstDigit:ip.charAt(0) });
+});
 
 app.get('/admin',function(req,res,next){
     res.sendFile(path.join(__dirname,'/public/admin.html'));
