@@ -1,0 +1,206 @@
+doctype html
+html.no-js(lang='zxx')
+  head
+    // Mobile Specific Meta
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    // Favicon
+    link(rel='shortcut icon', href='img/fav.png')
+    // Author Meta
+    meta(name='author', content='colorlib')
+    // Meta Description
+    meta(name='description', content='')
+    // Meta Keyword
+    meta(name='keywords', content='')
+    // meta character set
+    meta(charset='UTF-8')
+    // Site Title
+    title Bakery
+    link(href='https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700', rel='stylesheet')
+    //
+      CSS
+      =============================================
+    link(rel='stylesheet', href='css/linearicons.css')
+    link(rel='stylesheet', href='css/font-awesome.min.css')
+    link(rel='stylesheet', href='css/bootstrap.css')
+    link(rel='stylesheet', href='css/magnific-popup.css')
+    link(rel='stylesheet', href='css/nice-select.css')
+    link(rel='stylesheet', href='css/animate.min.css')
+    link(rel='stylesheet', href='css/jquery-ui.css')
+    link(rel='stylesheet', href='css/owl.carousel.css')
+    link(rel='stylesheet', href='css/main.css')
+    script(src='https://code.jquery.com/jquery-1.11.2.min.js')
+    script(src='js/bootstrap.min.js')
+    script.
+      function changetosignup(){
+      $('#LoginModal').modal('hide')
+      $('#LoginModal').on('hidden.bs.modal', function () {
+      // Load up a new modal...
+      $('#SignupModal').modal('show')
+      })
+      }
+      function changetologin(){
+      $('#SignupModal').modal('hide')
+      $('#SignupModal').on('hidden.bs.modal', function () {
+      // Load up a new modal...
+      $('#LoginModal').modal('show')
+      })
+      }
+      function dialogue(){
+      $('#dialogue').modal('show')
+      }();
+  body
+    #dialogue.modal.fade
+      .modal-dialog.modal-dialog-centered(role='document')
+        .modal-content
+          // Modal Header
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+          // Modal body
+          .modal-body
+            h1  User already exists
+          // Modal footer
+          .modal-footer
+            a.genric-btn.primary(href='../public/index.html', data-dismiss='modal') Close
+    #LoginModal.modal.fade
+      .modal-dialog.modal-dialog-centered(role='document')
+        .modal-content
+          // Modal Header
+          .modal-header
+            h4.modal-title LOGIN
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+          // Modal body
+          .modal-body
+            form#loginform(action='/login', method='post')
+              center
+                .mt-10
+                  input.single-input(type='text', name='email', placeholder='Email', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Email'", required='', autofocus='')
+                .mt-10
+                  input.single-input(type='password', name='password', placeholder='Password', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Password'", required='')
+                a.genric-btn.primary.circle(href="javascript:$('#loginform').submit();", type='submit') Login
+            center
+              p.loginhere
+                | Create an account ?
+                a#login(href='', data-toggle='modal', data-target='#SignupModal', onclick='return changetosignup()') Signup
+          // Modal footer
+          .modal-footer
+            a.genric-btn.primary(href='#', data-dismiss='modal') Close
+    #SignupModal.modal.fade
+      .modal-dialog.modal-dialog-centered(role='document')
+        .modal-content
+          // Modal Header
+          .modal-header
+            h4.modal-title Create Account
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+          // Modal body
+          .modal-body
+            form#signupform(method='POST', action='/signup')
+              center
+                .mt-10
+                  input.single-input(type='text', name='name', placeholder='Name', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Name'", required='', autofocus='')
+                .mt-10
+                  input.single-input(type='text', name='companyname', placeholder='Company Name', onfocus="this.placeholder = ''", onblur="this.placeholder = 'CompanyName'", required='', autofocus='')
+                .mt-10
+                  input.single-input(type='email', name='email', placeholder='Email Address', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Email Address'", required='')
+                .mt-10
+                  input.single-input(type='text', name='phonenumber', placeholder='Phone Number', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Phone Number'", required='')
+                .mt-10
+                  input.single-input(type='password', name='password', placeholder='Password', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Password'", required='')
+                .mt-10
+                  textarea.single-textarea(name='address', placeholder='Address', onfocus="this.placeholder = ''", onblur="this.placeholder = 'Address'", required='')
+                  center
+                    .form-group
+                      input#agree-term.agree-term(type='checkbox', name='agree-term')
+                      label.label-agree-term(for='agree-term')
+                        span
+                          span
+                        | I agree all statements in  
+                        a.term-service(href='#') Terms of service
+                      br
+                      a.genric-btn.primary.circle(href="javascript:$('#signupform').submit();", type='submit') Signup
+                center
+                  p.loginhere
+                    | Have already an account ? 
+                    a#login(href='', data-toggle='modal', data-target='#SignupModal', onclick='return changetologin()') Login
+            // Modal footer
+            .modal-footer
+              a.genric-btn.primary(href='#', data-dismiss='modal') Close
+    header#header
+      .header-top
+        .container
+          .row.align-items-center
+            .col-lg-6.col-sm-6.col-4.header-top-left.no-padding
+              .menu-social-icons
+                a(href='#')
+                  i.fa.fa-facebook
+                a(href='#')
+                  i.fa.fa-twitter
+                a(href='#')
+                  i.fa.fa-dribbble
+                a(href='#')
+                  i.fa.fa-behance
+            .col-lg-6.col-sm-6.col-8.header-top-right.no-padding
+              a.btns(href='tel:+953 012 3654 896') Your phone number
+              a.btns(href='mailto:support@colorlib.com') your mail
+              a.icons(href='tel:+953 012 3654 896')
+                span.lnr.lnr-phone-handset
+              a.icons(href='mailto:support@colorlib.com')
+                span.lnr.lnr-envelope
+      .container.main-menu
+        .row.align-items-center.justify-content-between.d-flex
+          a(href='index.html')
+            img(src='img/logo.png', alt='', title='')
+          nav#nav-menu-container
+            ul.nav-menu
+              li.menu-active
+                a(href='index.html') Home
+              li
+                a(href='about.html') About
+              li
+                a(href='menu.html') Menu
+              li.menu-has-children
+                a(href='') LOGIN / SIGNUP
+                ul
+                  li.menu-has-children
+                    a(href='') CUSTOMER
+                    ul
+                      li
+                        a(href='#', data-toggle='modal', data-target='#LoginModal') LOGIN
+                      li
+                        a(href='#', data-toggle='modal', data-target='#SignupModal') SIGNUP
+                  li.menu-has-children
+                    a(href='') TECHNICIAN
+                    ul
+                      li
+                        a(href='#', data-toggle='modal', data-target='#LoginModal') LOGIN
+                      li
+                        a(href='#', data-toggle='modal', data-target='#SignupModal') SIGNUP
+              li
+                a(href='contact.html') Contact
+          // #nav-menu-container
+    section#home.banner-area.relative
+      .overlay.overlay-bg
+      .container
+        .row.fullscreen.d-flex.justify-content-center.align-items-center
+          .banner-content.col-lg-10.col-md-12.justify-content-center
+            h6.text-uppercase Sub Heasding
+            h1
+              | Main Heading
+            p.text-white.mx-auto
+              | Sub Heading
+            a.primary-btn.squire.text-uppercase.mt-10(href='#') Check Our Services
+    // End banner Area
+    // start banner Area
+    script(src='js/vendor/jquery-2.2.4.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+    script(src='js/vendor/bootstrap.min.js')
+    script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA')
+    script(src='js/easing.min.js')
+    script(src='js/hoverIntent.js')
+    script(src='js/superfish.min.js')
+    script(src='js/jquery.ajaxchimp.min.js')
+    script(src='js/jquery.magnific-popup.min.js')
+    script(src='js/jquery-ui.js')
+    script(src='js/owl.carousel.min.js')
+    script(src='js/jquery.nice-select.min.js')
+    script(src='js/mail-script.js')
+    script(src='js/main.js')

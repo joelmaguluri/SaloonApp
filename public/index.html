@@ -16,7 +16,7 @@
 		<!-- Site Title -->
 		<title>Bakery</title>
 
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
 			<!--
 			CSS
 			============================================= -->
@@ -24,151 +24,339 @@
 			<link rel="stylesheet" href="css/font-awesome.min.css">
 			<link rel="stylesheet" href="css/bootstrap.css">
 			<link rel="stylesheet" href="css/magnific-popup.css">
-			<link rel="stylesheet" href="css/nice-select.css">							
+			<link rel="stylesheet" href="css/nice-select.css">
 			<link rel="stylesheet" href="css/animate.min.css">
-			<link rel="stylesheet" href="css/jquery-ui.css">			
+			<link rel="stylesheet" href="css/jquery-ui.css">
 			<link rel="stylesheet" href="css/owl.carousel.css">
 			<link rel="stylesheet" href="css/main.css">
 			<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 			<script src="js/bootstrap.min.js"></script>
 
 <script>
-function changetosignup(){
-$('#LoginModal').modal('hide')
-$('#LoginModal').on('hidden.bs.modal', function () {
+function customerchangetosignup(){
+$('#CustomerLoginModal').modal('hide')
+$('#CustomerLoginModal').on('hidden.bs.modal', function () {
   // Load up a new modal...
-  $('#SignupModal').modal('show')
+  $('#CustomerSignupModal').modal('show')
+})
+
+}
+function technicianchangetosignup(){
+$('#TechnicianLoginModal').modal('hide')
+$('#TechnicianLoginModal').on('hidden.bs.modal', function () {
+  // Load up a new modal...
+  $('#TechnicianSignupModal').modal('show')
 })
 
 }
 
 
-function changetologin(){
-$('#SignupModal').modal('hide')
-$('#SignupModal').on('hidden.bs.modal', function () {
+function techincianchangetologin(){
+$('#TechnicianSignupModal').modal('hide')
+$('#TechnicianSignupModal').on('hidden.bs.modal', function () {
   // Load up a new modal...
-  $('#LoginModal').modal('show')
+  $('#TechnicianLoginModal').modal('show')
+})
+
+}
+
+function customerchangetologin(){
+$('#CustomerSignupModal').modal('hide')
+$('#CustomerSignupModal').on('hidden.bs.modal', function () {
+  // Load up a new modal...
+  $('#CustomerLoginModal').modal('show')
 })
 
 }
 </script>
 </head>
-		<body>	
-		
-				<div class="modal fade" id="LoginModal">
-						<div class="modal-dialog modal-dialog-centered" role="document">
-							<div class="modal-content">
-							
+		<body>
+
+			<div class="modal fade" id="CustomerLoginModal">
+
+				<div class="modal-dialog modal-dialog-centered" role="document">
+
+					<div class="modal-content">
+
 								<!-- Modal Header -->
+
 								<div class="modal-header">
-										<h4 class="modal-title">LOGIN</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    
-                </div>
-								
+
+									<h4 class="modal-title">LOGIN</h4>
+
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+								</div>
+
 								<!-- Modal body -->
+
 								<div class="modal-body">
-									
-							
-						
-										<form id='loginform' action="/login" method="post">
+
+
+
+										<form id='customerloginform' action="/customerlogin" method="post">
 												 <center>
 														<div class="mt-10">
-																<input type="text" name="name" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input" autofocus>
+																<input type="text" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" required class="single-input" autofocus>
 														</div>
-												 
-														
-													
+
+
+
 														<div class="mt-10">
-																		<input type="text" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input" >
-																	<center> 
-																	
-                       
+																		<input type="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input" >
+
+
+
 																</div>
-													
-															<a href="javascript:$('#loginform').submit();" class="genric-btn primary circle" type="submit">Login</a></center>
-				
-																	 
+
+															<a href="javascript:$('#customerloginform').submit();" class="genric-btn primary circle" type="submit">Login</a></center>
+
+
 											</form>
-				
+
 										<center>
-												       
+
 												<p class="loginhere">
-												Create an account ?<a href="" data-toggle="modal" data-target="#SignupModal" id="login" onclick="return changetosignup()">Signup</a> 
-															
+												Create an account ?<a href="" data-toggle="modal" data-target="#CustomerSignupModal" id="login" onclick="return customerchangetosignup()">Signup</a>
+
 												</p>
-										</center>   
-						
-		
+										</center>
+
+
 								</div>
-								
+
 								<!-- Modal footer -->
 								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="index.html">Close</a></button>
+									    <a href="#" class="genric-btn primary" data-dismiss="modal">Close</a>
 								</div>
-								
+
 							</div>
 						</div>
 					</div>
 
 
 
-				<div class="modal fade" id="SignupModal">
+				<div class="modal fade" id="CustomerSignupModal">
 						<div class="modal-dialog modal-dialog-centered" role="document">
 							<div class="modal-content">
-							
+
 								<!-- Modal Header -->
 								<div class="modal-header">
 										<h4 class="modal-title">Create Account</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    
+
                 </div>
-								
+
 								<!-- Modal body -->
 								<div class="modal-body">
-									
-							
-						
-										<form id='signupform' method="POST" action="/signup">
+
+
+
+										<form id='customersignupform' method="POST" action="/customersignup">
 												 <center>
 														<div class="mt-10">
-																<input type="text" name="name" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input" autofocus>
-														</div>
-												 
-														
-														<div class="mt-10">
-																<input type="email" name="email" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required class="single-input" >
+																<input type="text" name="name" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required class="single-input" autofocus>
 														</div>
 														<div class="mt-10">
-																		<input type="text" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input" >
-																	<center>	<a href="javascript:$('#signupform').submit();" class="genric-btn primary circle" type="submit">Signup</a></center> </center>
-																</div>
-													
-											</form>		
-				
-				
-					
-				
-										<center>
-														<div class="form-group">
-																		<input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-																		<label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-																</div>                   
-												<p class="loginhere">
-														Have already an account ? <a href="" data-toggle="modal" data-target="#SignupModal" id="login" onclick="return changetologin()">Login</a> 
-															
-												</p>
-										</center>   
-								</center>
-														 
-			
+																<input type="text" name="companyname" placeholder="Company Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'CompanyName'" required class="single-input" autofocus>
+														</div>
 
-								
+
+														<div class="mt-10">
+																<input type="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required class="single-input" >
+														</div>
+														<div class="mt-10">
+																<input type="text" name="phonenumber" placeholder="Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'" required class="single-input" >
+														</div>
+
+												<div class="mt-10">
+
+														<input type="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input" >
+
+
+                        </div>
+														<div class="mt-10">
+															<textarea class="single-textarea" name="address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'" required=""></textarea>
+
+
+																	<center>
+																		<div class="form-group">
+																						<input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+																						<label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+																						<br><a href="javascript:$('#customersignupform').submit();" class="genric-btn primary circle" type="submit">Signup</a>
+
+																		</div>
+                                 </center>
+														</div>
+
+											</form>
+
+
+
+
+										<center>
+
+												<p class="loginhere">
+														Have already an account ? <a href="" data-toggle="modal" data-target="#CustomerSignupModal" id="login" onclick="return customerchangetologin()">Login</a>
+
+												</p>
+										</center>
+								</center>
+
+
+
+
 						<!-- Modal footer -->
 								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="index.html">Close</a></button>
+							    <a href="#" class="genric-btn primary" data-dismiss="modal">Close</a>
 								</div>
-								
+
+							</div>
+						</div>
+					</div>
+				</div>
+			  
+
+
+			<div class="modal fade" id="TechnicianLoginModal">
+
+				<div class="modal-dialog modal-dialog-centered" role="document">
+
+					<div class="modal-content">
+
+								<!-- Modal Header -->
+
+								<div class="modal-header">
+
+									<h4 class="modal-title">LOGIN</h4>
+
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+								</div>
+
+								<!-- Modal body -->
+
+								<div class="modal-body">
+
+
+
+										<form id='technicianloginform' action="/technicianlogin" method="post">
+												 <center>
+														<div class="mt-10">
+																<input type="text" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" required class="single-input" autofocus>
+														</div>
+
+
+
+														<div class="mt-10">
+																		<input type="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input" >
+
+
+
+																</div>
+
+															<a href="javascript:$('#technicianloginform').submit();" class="genric-btn primary circle" type="submit">Login</a></center>
+
+
+											</form>
+
+										<center>
+
+												<p class="loginhere">
+												Create an account ?<a href="" data-toggle="modal" data-target="#TechnicianSignupModal" id="login" onclick="return technicianchangetosignup()">Signup</a>
+
+												</p>
+										</center>
+
+
+								</div>
+
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									    <a href="#" class="genric-btn primary" data-dismiss="modal">Close</a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
+
+				<div class="modal fade" id="TechnicianSignupModal">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+
+								<!-- Modal Header -->
+								<div class="modal-header">
+										<h4 class="modal-title">Create Account</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+                </div>
+
+								<!-- Modal body -->
+								<div class="modal-body">
+
+
+
+										<form id='techniciansignupform' method="POST" action="/techniciansignup">
+												 <center>
+														<div class="mt-10">
+																<input type="text" name="name" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required class="single-input" autofocus>
+														</div>
+														<div class="mt-10">
+																<input type="text" name="companyname" placeholder="Company Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'CompanyName'" required class="single-input" autofocus>
+														</div>
+
+
+														<div class="mt-10">
+																<input type="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required class="single-input" >
+														</div>
+														<div class="mt-10">
+																<input type="text" name="phonenumber" placeholder="Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'" required class="single-input" >
+														</div>
+
+												<div class="mt-10">
+
+														<input type="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input" >
+
+
+                        </div>
+														<div class="mt-10">
+															<textarea class="single-textarea" name="address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'" required=""></textarea>
+
+
+																	<center>
+																		<div class="form-group">
+																						<input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+																						<label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+																						<br><a href="javascript:$('#techniciansignupform').submit();" class="genric-btn primary circle" type="submit">Signup</a>
+
+																		</div>
+                                 </center>
+														</div>
+
+											</form>
+
+
+
+
+										<center>
+
+												<p class="loginhere">
+														Have already an account ? <a href="" data-toggle="modal" data-target="#TechnicianSignupModal" id="login" onclick="return technicianchangetologin()">Login</a>
+
+												</p>
+										</center>
+								</center>
+
+
+
+
+						<!-- Modal footer -->
+								<div class="modal-footer">
+							    <a href="#" class="genric-btn primary" data-dismiss="modal">Close</a>
+								</div>
+
 							</div>
 						</div>
 					</div>
@@ -183,26 +371,26 @@ $('#SignupModal').on('hidden.bs.modal', function () {
 								<a href="#"><i class="fa fa-twitter"></i></a>
 								<a href="#"><i class="fa fa-dribbble"></i></a>
 								<a href="#"><i class="fa fa-behance"></i></a>
-							</div>	    				  					
+							</div>
 				  			</div>
 				  			<div class="col-lg-6 col-sm-6 col-8 header-top-right no-padding">
 								<a class="btns" href="tel:+953 012 3654 896">Your phone number</a>
-				  				<a class="btns" href="mailto:support@colorlib.com">your mail</a>		
+				  				<a class="btns" href="mailto:support@colorlib.com">your mail</a>
 				  				<a class="icons" href="tel:+953 012 3654 896">
 				  					<span class="lnr lnr-phone-handset"></span>
 				  				</a>
 				  				<a class="icons" href="mailto:support@colorlib.com">
 				  					<span class="lnr lnr-envelope"></span>
-				  				</a>		
+				  				</a>
 				  			</div>
-				  		</div>			  					
+				  		</div>
 		  			</div>
 				</div>
 
-			
+
 			    <div class="container main-menu">
 			    	<div class="row align-items-center justify-content-between d-flex">
-			    		<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>		
+			    		<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
 						<nav id="nav-menu-container">
 							<ul class="nav-menu">
 							  <li class="menu-active"><a href="index.html">Home</a></li>
@@ -212,27 +400,27 @@ $('#SignupModal').on('hidden.bs.modal', function () {
 							    <ul>
 							      <li class="menu-has-children"><a href="">CUSTOMER</a>
 							        <ul>
-							          <li><a href="#"  data-toggle="modal" data-target="#LoginModal">LOGIN</a></li>
-												<li><a href="#" data-toggle="modal" data-target="#SignupModal">SIGNUP</a></li>
+							          <li><a href="#"  data-toggle="modal" data-target="#CustomerLoginModal">LOGIN</a></li>
+												<li><a href="#" data-toggle="modal" data-target="#CustomerSignupModal">SIGNUP</a></li>
 							        </ul>
-										</li>		
+										</li>
 										<li class="menu-has-children"><a href="">TECHNICIAN</a>
 											<ul>
-							          <li><a href="#"  data-toggle="modal" data-target="#LoginModal">LOGIN</a></li>
+							          <li><a href="#"  data-toggle="modal" data-target="#TechnicianLoginModal">LOGIN</a></li>
 												<li>
-														<a href="#" data-toggle="modal" data-target="#SignupModal">SIGNUP</a>
+														<a href="#" data-toggle="modal" data-target="#TechnicianSignupModal">SIGNUP</a>
 									      </li>
-							        </ul> 
-							      </li>					              
+							        </ul>
+							      </li>
 							    </ul>
-							  </li>						  			          	          
+							  </li>
 							  <li><a href="contact.html">Contact</a></li>
 							</ul>
-						</nav><!-- #nav-menu-container -->		
+						</nav><!-- #nav-menu-container -->
 			    	</div>
 			    </div>
-			  </header><!-- #header -->
-			
+			  </header>
+
 				<section class="banner-area relative" id="home">
 					<div class="overlay overlay-bg"></div>
 					<div class="container">
@@ -246,27 +434,27 @@ $('#SignupModal').on('hidden.bs.modal', function () {
 									Sub Heading
 								</p>
 								<a href="#" class="primary-btn squire text-uppercase mt-10">Check Our Services</a>
-							</div>											
+							</div>
 						</div>
 					</div>
 				</section>
 				<!-- End banner Area -->
-	
+
 			<!-- start banner Area -->
-		
+
 			<script src="js/vendor/jquery-2.2.4.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-			<script src="js/vendor/bootstrap.min.js"></script>			
+			<script src="js/vendor/bootstrap.min.js"></script>
 			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-  			<script src="js/easing.min.js"></script>			
+  			<script src="js/easing.min.js"></script>
 			<script src="js/hoverIntent.js"></script>
-			<script src="js/superfish.min.js"></script>	
+			<script src="js/superfish.min.js"></script>
 			<script src="js/jquery.ajaxchimp.min.js"></script>
-			<script src="js/jquery.magnific-popup.min.js"></script>	
- 			<script src="js/jquery-ui.js"></script>			
-			<script src="js/owl.carousel.min.js"></script>						
-			<script src="js/jquery.nice-select.min.js"></script>							
-			<script src="js/mail-script.js"></script>	
-			<script src="js/main.js"></script>	
+			<script src="js/jquery.magnific-popup.min.js"></script>
+ 			<script src="js/jquery-ui.js"></script>
+			<script src="js/owl.carousel.min.js"></script>
+			<script src="js/jquery.nice-select.min.js"></script>
+			<script src="js/mail-script.js"></script>
+			<script src="js/main.js"></script>
 		</body>
 	</html>
