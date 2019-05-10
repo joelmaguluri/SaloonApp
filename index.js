@@ -1,138 +1,33 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const DBConnect = require("./dbconnect");
-var TechnicianSchema=require('./models/Technicianmodel');
-var CustomerSchema=require('./models/Customermodel');
-const mongoose = require('mongoose');
-var Services=require('./public/services');
-const app = express();
-const port = process.env.PORT || 1234;
-const path=require('path')
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname,'/public')));
-app.use(express.static(path.join(__dirname,'/public/Table')));
+var express=require('express');
+const app=express();
+const PORT=process.env.PORT||5000;
+var bodyParser=require('body-parser');
+var db=require('./config/dbconnect');
+var path=require('path');
+var session = require("express-session")
+var passport=require('./config/passport')
 
-app.get('/',function(req,res,next){
-res.sendFile(path.join(__dirname,'/public/index.html'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine','ejs');
+app.use(bodyParser.json())
 
-});
-// Need to convert them to template engines
-app.get('/technician', function(req, res){
-    res.sendFile(path.join(__dirname,'/public/Technician.html'));
-});
-app.get('/checkout', function(req, res){
-    res.sendFile(path.join(__dirname,'/public/checkout.html'));
-});
-app.get('/bookingconfirmation', function(req, res){
-    res.render('ip.pug');
+// Express body parser
+app.use(express.urlencoded({ extended: true }));
 
-});
-app.set('view engine', 'pug');
+//passport configaration
 
-// need to build the UI
-app.post('/customerlogin',function(req,res,next){
-    var Customer=mongoose.model("customer",CustomerSchema);
-    var customer = new Customer(req.body);
-    Customer.find({email: req.body.email},function(err,docs){
-        if(docs.length==0){
-            console.log('user not found');
-   
-        }
-        else if(docs[0].email==req.body.email && docs[0].password==req.body.password){
-            res.render('afterlogin.pug',docs[0]);
-        }
-        else{
-            console.log('wrong password')
-        }
+app.use(session({ secret: "cats",
+resave: false,
+  saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
-})
+//routes
+app.use('/',require('./routes/index'));
+app.use('/user',require('./routes/user'));
+app.use('/admin',require('./routes/admin'));
 
 
-});
-// need to build the UI
-app.post('/technicianlogin',function(req,res,next){
-    var Technician=mongoose.model("Technician",TechnicianSchema)
-    var technician = new Technician(req.body);
-    Technician.find({email: req.body.email},function(err,docs){
-        if(docs.length==0){
-            console.log('user not found');
-   
-        }
-        else if(docs[0].email==req.body.email && docs[0].password==req.body.password){
-            res.render('technicianprofile',docs[0]);
-        }
-        else{
-            console.log('wrong password')
-        }
 
-
-})
-
-});
-
-app.post('/payment',function(req,res,next){
-   console.log(req.body);
-   if(req.body.radgroup=='Online'){
-    res.render('payment.pug',req.body);
-   }
-
-   else{
-
-    res.json({payment:"Onservice"});
-   }
-});
-
-app.post('/customersignup',function(req,res,next){
-    var Customer=mongoose.model("customer",CustomerSchema);
-    var customer = new Customer(req.body);
-    Customer.find({email: req.body.email},function(err,docs){
-     if(docs.length==0){
-         console.log(docs);
-         customer.save()
-         res.render('thankyou.pug');
-
-     }
-     else{
-
-        console.log('record already exists');
-         res.render('dialogue.pug')
-     }
-    
-    });
-
-
-});
-
-app.post('/techniciansignup',function(req,res,next){
-    var Technician=mongoose.model("Technician",TechnicianSchema)
-    var technician = new Technician(req.body);
-    Technician.find({email: req.body.email},function(err,docs){
-     if(docs.length==0){
-         console.log(docs);
-         technician.save()
-         res.render('thankyou.pug');
-
-     }
-     else{
-
-        console.log('record already exists');
-         res.render('dialogue.pug')
-     }
-    
-    });
-
-
-});
-
-
-app.get('/admin',function(req,res,next){
-    res.sendFile(path.join(__dirname,'/public/admin.html'));
-
-});
-
-
-app.listen(port,function(){
-    console.log(`Server connected at ${port}`);
-});
+app.listen(PORT,console.log(`listening at port ${PORT}`));
