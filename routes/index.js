@@ -6,7 +6,7 @@ var mongoose=require('mongoose')
 var ItemSchema=require('../models/Item')
 var Item=mongoose.model('saloonitems',ItemSchema)
 var item=require('../Items/item');
-
+var {ensureAuthenticated,forwardAuthenticated}=require('../config/auth');
 //Home page
 router.get('/',(req,res,next)=>{
     req.logout();
@@ -70,33 +70,37 @@ router.get('/getitems',function(req,res){
   })
 
 
-router.post('/checkout',(req,res,next)=>{
-  var keys=Object.keys(req.body);
-  var obj={};
-  keys.map(catogery=>
-    {
-      
-     obj[catogery]=[]
-     req.body[catogery].map(item=>{
-  
-      if(item.length==3)
+  router.use('/checkout',ensureAuthenticated);
+  router.post('/checkout',(req,res,next)=>{
+    console.log(req.user)
+    var keys=Object.keys(req.body);
+    var obj={};
+    keys.map(catogery=>
       {
-        obj[catogery].push({name:item[0],price:item[1]})
-      }
+        
+       obj[catogery]=[]
+       req.body[catogery].map(item=>{
+    
+        if(item.length==3)
+        {
+          obj[catogery].push({name:item[0],price:item[1]})
+        }
+       })
+  
      })
-
-   })
-  keys.map(catogery=>{
-  if(obj[catogery].length==0)
-  {
-    delete obj[catogery];
-  }
-
+    keys.map(catogery=>{
+    if(obj[catogery].length==0)
+    {
+      delete obj[catogery];
+    }
+  
+    })
+  
+    obj.user=req.user;
+    res.render('./user/BookingsandMenu/checkouttable.ejs',obj)
+  
   })
 
-  res.render('./user/BookingsandMenu/checkouttable.ejs',obj)
 
-})
-
-
+  
 module.exports=router;

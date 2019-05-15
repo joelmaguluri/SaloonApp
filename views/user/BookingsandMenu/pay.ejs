@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Payment Custom</title>
+</head>
+<body>
+    
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>        
+        var amount = '<%=amount%>';
+        amount=amount.substr(1);
+        console.log(amount)
+        var options = {
+        "key": "rzp_test_tQsBlwBNw5bvWt",
+        "amount": amount*100, 
+        "name": '<%=name%>',
+        "description": "BootCamp Fees",
+        "image": "http://ijohniebravojbay.com/assets/images/johnie1.png",
+        "handler": function (response){
+            alert(response.razorpay_payment_id);
+        },
+       
+        "theme": {
+            "color": "#F37254"
+        }
+    }
+    var rzp1 = new Razorpay(options);
+        rzp1.open();
+        e.preventDefault();
+    
+
+    </script>
+    <p>Hello </p>
+</body>
+</html>

@@ -1,10 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head></head>
+<head>
+<script>
+function payanddisplayamount()
+{
+
+  $("PaymentModal").modal('show');
+  var amount=document.getElementById('totalamount').innerText;
+  var dialogueamount=document.getElementById('dialogueamount');
+  dialogueamount.value=amount;
+}
+
+
+</script>
+
+</head>
 
 <body>
-  <title>Booking Confirmed</title>
+  <div class="modal fade hide" id="PaymentModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          
+        <div class="modal-header">
+              
+          <h4 class="modal-title">Billing Detail</h4>
+        
+        </div>
+        
+        <div class="modal-body">
+        
+          <form id="paymentform"  method="POST" action="/user/payment">
+            <div class="mt-10">
+            <input type="text" name="name" value="<%= user.name %>" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required="" class="single-input" required>
+            </div>
+            
+              
+            <div class="mt-10">
+            
+              <input type="text" name="phonenumber" value="<%= user.phonenumber %>" placeholder="Phonenumber" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phonenumber'" required="" class="single-input" required>
+       
+              </div>
+               
+            
+            
+            <div class="mt-10">
+              
+              <input type="text" name="email" placeholder="Email"  value="<%= user.email %>"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" required="" class="single-input" required>
+              
+            </div>
+
+              
+            <div class="mt-10">
+            
+              <textarea class="single-textarea" placeholder="Address" name="address"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'" required><%= user.address%></textarea>
+                
+              <br>
+                  
+              <h3>Amount</h3><br>
+      
+              <input type="text"  name="amount" id="dialogueamount" class="single-input" required></input>			   
+              
+              
+            </div>
+              
+            <div class="mt-10" required>
+            <label class="block"><input type="radio" name="radgroup" value="Online">Online Payment</label>
+              
+            <label class="block"><input type="radio" name="radgroup" value="Onservice">Pament On Service</label>
+            </div>
+        
+            <center>
+
+              <br><a href="javascript:$('#paymentform').submit();" class="genric-btn primary circle" type="submit">Pay</a>
+
+            </center>				
+          </form>
+
+        </div>
+        
+        <div class="modal-footer">
+
+        
+          <a href="#" class="genric-btn primary" data-dismiss="modal">Close</a>
+        
+        </div>
+
+  
+      </div>
+      
+    </div>
+</div>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ===============================================================================================-->
@@ -24,10 +111,8 @@
     <link rel="stylesheet" type="text/css" href="Tablecss/css/main.css">
     <!-- ===============================================================================================-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-    <!--
-    CSS
-    =============================================
-    -->
+  
+    
     <link rel="stylesheet" href="css/linearicons.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -57,8 +142,13 @@
       justify-content: center;
       }
       #root{
+     
+      background-image: url('./Tablecss/images/white-bg.jpg');
       width:100%;
-      background-image: url('./Tablecss/images/white-bg.jpg')
+      }
+      body{
+
+      width:100%;
       }
       #ConfirmationDetails{
       margin-left: 10%;
@@ -70,20 +160,69 @@
       table{
       margin-left: 10%;
       }
+
+        #ConfirmationDetails{
+
+        margin-top: 20%;
+}
     </style>
-    <div id="root" >
+    <div id="body">
+    <div id="root">
         <% var total =0; %>
+        <header id="header" id="home">
+          <div class="header-top">
+              <div class="container">
+                  <div class="row align-items-center">
+                      <div class="col-lg-6 col-sm-6 col-4 header-top-left no-padding">
+                      <div class="menu-social-icons">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                        <a href="#"><i class="fa fa-behance"></i></a>
+                    </div>
+                      </div>
+                      <div class="col-lg-6 col-sm-6 col-8 header-top-right no-padding">
+                        <a class="btns" href="#"></a>
+                          <a class="btns" href="#"></a>
+                          <a class="icons" href="#">
+                              <span class="lnr lnr-phone-handset"></span>
+                          </a>
+                          <a class="icons" href="mailto:support@colorlib.com">
+                              <span class="lnr lnr-envelope"></span>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+        </div>
+  
+  
+        <div class="container main-menu">
+            <div class="row align-items-center justify-content-between d-flex">
+                <a href="index.html"><img src="/img/logo.png" alt="" title="" /></a>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                      <li class="menu-active"><a href="/">Home</a></li>
+                      <li><a href="about.html">About</a></li>
+                      <li><a href="/user/menu">Menu</a></li>
+                      <li class="menu-has-children"><a href=""><%=user.name%></a>
+                      <ul>
+                        <li class="menu-has-children"><a href="/user/profile">Profile</a>
+                        <li class="menu-has-children"><a href="/logout">Signout</a>
+                      </ul>
+  
+                      </li>
+                      <li><a href="/user/contact">Contact</a></li>
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+            </div>
+        </div>
+      </header>
       <div class="limiter">
-        <center>
-          <h1 class="typo-list">Booking Confirmation</h1>
-        </center>
+   
         <div class="flex-container">
           <div class="table100">
             <div>
-              <center>
-                <h2 class="typo-list">Appointment has been confirmed with Technician</h2>
-                <p></p>
-              </center><br>
+      
               <div class="container" id="ConfirmationDetails">
                 <div class="row">
                   <div class="col-sm">
@@ -134,8 +273,8 @@
                   </div>
                 </div><br>
               </div>
-            </div><br>
-            <table onchange="changeamount()">
+            </div><br>  
+            <table>
               <thead>
                 <tr class="table100-head">
                   <th class="column1">Sr.no</th>
@@ -233,7 +372,7 @@
                   <td class="column4"><b>
                       <p>Subtotal</p>
                     </b></td>
-                  <td class="column5">$<%=total%></td>
+                  <td class="column5">$<%=total.toFixed(2)%></td>
                   <td class="column6"></td>
                 </tr>
                 <tr class="lastthree">
@@ -253,17 +392,18 @@
                   <td class="column4"><b>
                       <p>Total</p>
                     </b></td>
-                  <td class="column5">$<%=(total+total*VAT/100).toFixed(2)%></td>
+                  <td class="column5" name="amount" id="totalamount">$<%=(total+total*VAT/100).toFixed(2)%></td>
                   <td class="column6"></td>
                 </tr>
               </tbody>
             </table><br>
             <div class="box">
-              <div><a class="genric-btn primary circle arrow" href="../index.html">Return to website<span class="lnr lnr-arrow-right"></span></a></div>
+              <div><a href="#" data-toggle="modal" onclick="return payanddisplayamount()" data-target="#PaymentModal" class="genric-btn primary e-large">Pay</a></span></a></div>
             </div>
           </div>
         </div>
       </div><br><br>
+    </div>
       <footer class="footer-area section-gap">
         <div class="container">
           <div class="row">

@@ -6,11 +6,18 @@ const User=mongoose.model('saloonappuser',UserSchema)
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const {ensureAuthenticated,forwardAuthenticated}=require('../config/auth');
+const path=require('path');
 
 router.use('/contact',ensureAuthenticated)
 router.use('/account',ensureAuthenticated)
+router.use('/menu',ensureAuthenticated)
+router.use('/menu',express.static('public/build'))
+router.get('/menu',(req,res,next)=>{
+ 
 
+   
 
+})
 
 
 //after registration storing details in Database
@@ -183,6 +190,15 @@ router.post('/profile',function(req,res,next){
     
   }
 
+
+
+})
+
+router.use('/payment',ensureAuthenticated)
+router.post('/payment',(req,res,next)=>{
+  console.log(req.body)
+
+  res.render('./user/BookingsandMenu/pay',req.body)
 
 
 })
